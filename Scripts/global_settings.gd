@@ -1,5 +1,9 @@
 extends Node
 
+signal volume_master_changed(volume)
+signal volume_sfx_changed(volume)
+signal volume_music_changed(volume)
+
 var config_path: String = "res://config.ini"
 
 var bind_aliases = {"move_left": "ui_left",
@@ -15,16 +19,22 @@ var volume_master = null setget set_volume_master, get_volume_master
 var volume_sfx = null setget set_volume_sfx, get_volume_sfx
 var volume_music = null setget set_volume_music, get_volume_music
 
+var ultraviolence = null setget set_ultraviolence, get_ultraviolence
+
 func _ready() -> void:
+	pass
+
+func load_settings() -> void:
 	if config.load(config_path) == OK:
 		if config.has_section("input"):
 			for action in config.get_section_keys("input"):
 				set_keybind(action, config.get_value("input", action))
-	else:
-		set_volume_master()
-		set_volume_sfx()
-		set_volume_music()
-		save_config()
+	
+	set_volume_master(get_volume_master()) # HACK: probably better way
+	set_volume_sfx(get_volume_sfx())
+	set_volume_music(get_volume_music())
+	set_ultraviolence(get_ultraviolence())
+	save_config()
 
 func clear_keybind(action) -> void:
 	if !InputMap.get_action_list(action).empty():
@@ -42,7 +52,7 @@ func set_keybind(action, key, clear_binding=true) -> void:  # TODO: deconflict w
 		var aliased_action = bind_aliases[action]
 		set_keybind(aliased_action, key, false)
 	InputMap.action_add_event(action, key)
-	config.set_value("input", action, key)
+	config_set("input", action, key)
 
 func save_config() -> void:
 	config.save(config_path)
@@ -56,23 +66,35 @@ func config_get_with_default(section: String, key: String, default):
 	var return_value = config.get_value(section, key)
 	if return_value == null:
 		# if value is null, initialize value with default
-		config.set_value(section, key, default)
-		save_config()  # not the most optimized but w/e
+		config_set(section, key, default)
 		return default
 	return return_value
 
+func config_set(section: String, key: String, value) -> void:
+	config.set_value(section, key, value)
+	save_config()
+
 # setters and getters
+
+# audio
 func get_volume_master() -> float:
 	return config_get_with_default("audio", "volume_master", 1.0)
 func set_volume_master(value: float = 1.0) -> void:
-	config.set_value("audio", "volume_master", value)
-
+	config_set("audio", "volume_master", value)
+	emit_signal("volume_master_changed", value)
 func get_volume_sfx() -> float:
 	return config_get_with_default("audio", "volume_sfx", 1.0)
 func set_volume_sfx(value: float = 1.0) -> void:
-	config.set_value("audio", "volume_sfx", value)
-
+	config_set("audio", "volume_sfx", value)
+	emit_signal("volume_sfx_changed", value)
 func get_volume_music() -> float:
 	return config_get_with_default("audio", "volume_music", 1.0)
 func set_volume_music(value: float = 1.0) -> void:
-	config.set_value("audio", "volume_music", value)
+	config_set("audio", "volume_music", value)
+	emit_signal("volume_music_changed", value)
+
+# game
+func get_ultraviolence() -> bool:
+	return config_get_with_default("game", "ultraviolence", true)
+func set_ultraviolence(value: bool = true) -> void:
+	config_set("game", "ultraviolence", value)
