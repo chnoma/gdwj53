@@ -31,7 +31,7 @@ func _input(event):
 			action_ui_binding[selected_action].set_is_rebinding(false)
 			state_rebinding = false
 
-func _on_rebind_request(action, bind_ui):
+func _on_rebind_request(action, bind_ui): # TODO: deselect all other rebind buttons
 	selected_action = action
 	state_rebinding = true
 	bind_ui.set_is_rebinding(true)

@@ -34,7 +34,7 @@ func clear_keybind(action) -> void:
 		var aliased_action = bind_aliases[action]
 		clear_keybind(aliased_action)
 
-func set_keybind(action, key, clear_binding=true) -> void:
+func set_keybind(action, key, clear_binding=true) -> void:  # TODO: deconflict with existing binds
 	#remove default keybinds
 	if clear_binding:
 		clear_keybind(action)

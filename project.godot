@@ -30,7 +30,7 @@ GlobalSettings="*res://Scripts/global_settings.gd"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/AsepriteWizard/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/AsepriteWizard/plugin.cfg", "res://addons/Todo_Manager/plugin.cfg" )
 
 [gui]
 
