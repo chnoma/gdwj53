@@ -21,6 +21,7 @@ func _ready():
 	$MainVBox/VBoxContainer/VBoxContainer/HBoxContainer/volume_master_slider.value = GlobalSettings.volume_master
 	$MainVBox/VBoxContainer/VBoxContainer/HBoxContainer2/volume_sfx_slider.value = GlobalSettings.volume_sfx
 	$MainVBox/VBoxContainer/VBoxContainer/HBoxContainer3/volume_music_slider.value = GlobalSettings.volume_music
+	$MainVBox/VBoxContainer/VBoxContainer/HBoxContainer4/uv_check.pressed = GlobalSettings.ultraviolence
 
 func _input(event):
 	if state_rebinding:
@@ -48,3 +49,6 @@ func _on_volume_sfx_slider_value_changed(value):
 
 func _on_volume_music_slider_value_changed(value):
 	GlobalSettings.volume_music = value
+
+func _on_uv_check_toggled(button_pressed):
+	GlobalSettings.ultraviolence = button_pressed
