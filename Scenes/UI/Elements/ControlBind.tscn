@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scenes/UI/Elements/ControlBind.gd" type="Script" id=1]
+
+[node name="ControlBind" type="HBoxContainer"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 1 )
+
+[node name="ActionName" type="Label" parent="."]
+margin_top = 13.0
+margin_right = 78.0
+margin_bottom = 27.0
+text = "<CONTROL>"
+
+[node name="VSeparator" type="VSeparator" parent="."]
+margin_left = 82.0
+margin_right = 86.0
+margin_bottom = 40.0
+
+[node name="BindButton" type="Button" parent="."]
+margin_left = 90.0
+margin_right = 110.0
+margin_bottom = 40.0
+text = "X"
+
+[connection signal="pressed" from="BindButton" to="." method="_on_BindButton_pressed"]
