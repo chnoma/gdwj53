@@ -3,7 +3,7 @@ extends MarginContainer
 
 #  references https://www.gotut.net/godot-key-bindings-tutorial/ heavily
 
-const ui_binding = preload("res://Scenes/UI/Elements/ControlBind.tscn")
+const ui_binding = preload("res://Scenes/UI/Elements/ControlBind/ControlBind.tscn")
 
 var action_ui_binding = {}
 var state_rebinding = false
