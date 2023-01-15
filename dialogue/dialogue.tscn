@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Dialogue/dialoguePlayer.gd" type="Script" id=1]
+[ext_resource path="res://93586-box-angle-brand-game-video-dialog-mother.png" type="Texture" id=2]
+
+[node name="dialogue" type="CanvasLayer"]
+script = ExtResource( 1 )
+d_file = "res://Dialogue/json/coolguy_chats.json"
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+margin_left = 119.0
+margin_top = 254.0
+margin_right = 817.0
+margin_bottom = 641.0
+texture = ExtResource( 2 )
+
+[node name="name" type="RichTextLabel" parent="NinePatchRect"]
+margin_left = 91.0
+margin_top = 168.0
+margin_right = 241.0
+margin_bottom = 193.0
+text = "name"
+
+[node name="chat" type="RichTextLabel" parent="NinePatchRect"]
+margin_left = 102.0
+margin_top = 200.0
+margin_right = 638.0
+margin_bottom = 285.0
+text = "text"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.7
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
