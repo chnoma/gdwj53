@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Entities/Player/CameraController.gd" type="Script" id=1]
 [ext_resource path="res://Entities/Player/Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Entities/Weapons/BaseWeapon/BaseWeapon.tscn" type="PackedScene" id=4]
 
 [node name="Node2D" type="Node2D"]
 
@@ -10,9 +9,6 @@
 
 [node name="Weapon_Attachment" type="Node2D" parent="Player"]
 position = Vector2( 7, 8 )
-
-[node name="Weapon" parent="Player/Weapon_Attachment" instance=ExtResource( 4 )]
-rotation = 1.5708
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true

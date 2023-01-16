@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Entities/Weapons/weapon_bluegun/sprites/world/bluegun_stock_top.png" type="Texture" id=1]
+[ext_resource path="res://Entities/Weapons/weapon_bluegun/scripts/weapon_bluegun_rear.gd" type="Script" id=2]
+
+[node name="bluegun_rear" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="attachment_point" type="Node2D" parent="."]
+position = Vector2( 0, -16 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, -8 )
+texture = ExtResource( 1 )

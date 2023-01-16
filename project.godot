@@ -12,22 +12,62 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "BaseComponent",
 "language": "GDScript",
-"path": "res://Entities/Weapons/BaseComponent/BaseComponent.gd"
+"path": "res://Entities/Weapons/Components/BaseComponent/BaseComponent.gd"
+}, {
+"base": "BaseItem",
+"class": "BaseFront",
+"language": "GDScript",
+"path": "res://Entities/Items/Components/BaseFront.gd"
+}, {
+"base": "Node",
+"class": "BaseItem",
+"language": "GDScript",
+"path": "res://Entities/Items/BaseItem.gd"
+}, {
+"base": "BaseItem",
+"class": "BaseMid",
+"language": "GDScript",
+"path": "res://Entities/Items/Components/BaseMid.gd"
+}, {
+"base": "BaseItem",
+"class": "BaseRear",
+"language": "GDScript",
+"path": "res://Entities/Items/Components/BaseRear.gd"
 }, {
 "base": "Node2D",
 "class": "BaseWeapon",
 "language": "GDScript",
 "path": "res://Entities/Weapons/BaseWeapon/BaseWeapon.gd"
 }, {
-"base": "RigidBody2D",
-"class": "ComponentRigidBody",
+"base": "InventorySlot",
+"class": "CraftingBox",
 "language": "GDScript",
-"path": "res://Entities/Weapons/ComponentItems/ComponentItemRigidBody.gd"
+"path": "res://Scenes/UI/Elements/Crafter/CraftingBox.gd"
+}, {
+"base": "Node2D",
+"class": "DroppedItem",
+"language": "GDScript",
+"path": "res://Entities/Items/DroppedItem.gd"
 }, {
 "base": "MouseElement",
 "class": "InventorySlot",
 "language": "GDScript",
 "path": "res://Scenes/UI/Elements/Inventory/InventorySlot.gd"
+}, {
+"base": "BaseItem",
+"class": "Item_Bluegun_Front",
+"language": "GDScript",
+"path": "res://Entities/Weapons/weapon_bluegun/scripts/item_bluegun_front.gd"
+}, {
+"base": "BaseItem",
+"class": "Item_Bluegun_Mid",
+"language": "GDScript",
+"path": "res://Entities/Weapons/weapon_bluegun/scripts/item_bluegun_mid.gd"
+}, {
+"base": "BaseItem",
+"class": "Item_Bluegun_Rear",
+"language": "GDScript",
+"path": "res://Entities/Weapons/weapon_bluegun/scripts/item_bluegun_rear.gd"
 }, {
 "base": "Node2D",
 "class": "MouseElement",
@@ -41,9 +81,17 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "BaseComponent": "",
+"BaseFront": "",
+"BaseItem": "",
+"BaseMid": "",
+"BaseRear": "",
 "BaseWeapon": "",
-"ComponentRigidBody": "",
+"CraftingBox": "",
+"DroppedItem": "",
 "InventorySlot": "",
+"Item_Bluegun_Front": "",
+"Item_Bluegun_Mid": "",
+"Item_Bluegun_Rear": "",
 "MouseElement": "",
 "OptionsMenu": ""
 }
@@ -110,6 +158,15 @@ fire={
 "events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
  ]
 }
+
+[layer_names]
+
+2d_physics/layer_1="player"
+2d_physics/layer_2="enemies"
+2d_physics/layer_3="hazards"
+2d_physics/layer_4="items"
+2d_physics/layer_5="bullets"
+2d_physics/layer_32="mouse cursor"
 
 [physics]
 

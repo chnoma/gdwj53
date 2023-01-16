@@ -1,5 +1,9 @@
 extends Node
 
+enum ItemTypes {TRASH, REAR, MID, FRONT}
+
+var player = null
+
 func _ready():
 # we do not care about these
 # warning-ignore:return_value_discarded

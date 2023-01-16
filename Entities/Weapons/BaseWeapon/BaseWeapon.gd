@@ -3,9 +3,9 @@ extends Node2D
 
 var bullet_prefab = preload("res://Entities/Weapons/BaseBullet/BaseBullet.tscn")
 
-var rear_component_path = preload("res://Entities/Weapons/BaseComponent/Test/Rear.tscn")
-var mid_component_path = preload("res://Entities/Weapons/BaseComponent/Test/Mid.tscn")
-var front_component_path = preload("res://Entities/Weapons/BaseComponent/Test/Front.tscn")
+var rear_component_path := "res://Entities/Weapons/Components/BaseComponent/Test/Rear.tscn"
+var mid_component_path := "res://Entities/Weapons/Components/BaseComponent/Test/Mid.tscn"
+var front_component_path := "res://Entities/Weapons/Components/BaseComponent/Test/Front.tscn"
 
 var rear_component: BaseComponent = null
 var mid_component: BaseComponent  = null
@@ -15,9 +15,9 @@ var valid = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	rear_component = rear_component_path.instance()
-	mid_component = mid_component_path.instance()
-	front_component = front_component_path.instance()
+	rear_component = load(rear_component_path).instance()
+	mid_component = load(mid_component_path).instance()
+	front_component = load(front_component_path).instance()
 	add_child(rear_component)
 	rear_component.add_child(mid_component)
 	mid_component.position = rear_component.attachment_point.position

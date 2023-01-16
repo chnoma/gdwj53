@@ -1,12 +1,11 @@
 extends KinematicBody2D
 
-
 var velocity: Vector2 = Vector2(0,0)
 var speed = 250
-
+var weapon = null
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	GlobalMaster.player = self
 
 func _process(_delta):
 	velocity = Vector2(0,0)
@@ -31,6 +30,25 @@ func _process(_delta):
 	
 	GlobalPhysics.gravity = desired_direction*18
 	
-	if Input.is_action_just_pressed("fire") and !GlobalViewport.mouse_in_inventory:
-		$Weapon_Attachment/Weapon.fire(self)
+	if weapon != null:
+		weapon.look_at(GlobalViewport.mouse_pos)
+		weapon.rotation_degrees = weapon.rotation_degrees+90
+		if Input.is_action_just_pressed("fire") and !GlobalViewport.mouse_in_inventory:
+			weapon.fire(self)
 	
+
+func clear_weapon():
+	if weapon != null:
+		weapon.queue_free()
+		weapon = null
+
+func equip_weapon(weapon_in: BaseWeapon):
+	clear_weapon()
+	$Weapon_Attachment.add_child(weapon_in)
+	weapon = weapon_in
+
+func _on_PickupArea_area_entered(item):
+	item = item.get_parent()
+	if item is DroppedItem && !GlobalViewport.inventory.full():
+		GlobalViewport.inventory.add_item(item.item_type)
+		item.queue_free()
