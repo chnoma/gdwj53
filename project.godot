@@ -9,12 +9,42 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node",
+"class": "BaseComponent",
+"language": "GDScript",
+"path": "res://Entities/Weapons/BaseComponent/BaseComponent.gd"
+}, {
+"base": "Node2D",
+"class": "BaseWeapon",
+"language": "GDScript",
+"path": "res://Entities/Weapons/BaseWeapon/BaseWeapon.gd"
+}, {
+"base": "RigidBody2D",
+"class": "ComponentRigidBody",
+"language": "GDScript",
+"path": "res://Entities/Weapons/ComponentItems/ComponentItemRigidBody.gd"
+}, {
+"base": "MouseElement",
+"class": "InventorySlot",
+"language": "GDScript",
+"path": "res://Scenes/UI/Elements/Inventory/InventorySlot.gd"
+}, {
+"base": "Node2D",
+"class": "MouseElement",
+"language": "GDScript",
+"path": "res://Scenes/UI/Elements/mouse_element.gd"
+}, {
 "base": "MarginContainer",
 "class": "OptionsMenu",
 "language": "GDScript",
 "path": "res://Scripts/UI/OptionsMenu.gd"
 } ]
 _global_script_class_icons={
+"BaseComponent": "",
+"BaseWeapon": "",
+"ComponentRigidBody": "",
+"InventorySlot": "",
+"MouseElement": "",
 "OptionsMenu": ""
 }
 
@@ -29,6 +59,7 @@ config/icon="res://icon.png"
 GlobalSettings="*res://Scripts/global_settings.gd"
 GlobalAudio="*res://Scripts/global_audio.gd"
 GlobalViewport="*res://Scripts/global_viewport.gd"
+GlobalPhysics="*res://Scripts/global_physics.gd"
 GlobalMaster="*res://Scripts/global_master.gd"
 
 [display]
@@ -45,6 +76,12 @@ enabled=PoolStringArray( "res://addons/AsepriteWizard/plugin.cfg", "res://addons
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
+
+[importer_defaults]
+
+texture={
+"flags/filter": false
+}
 
 [input]
 
@@ -66,6 +103,11 @@ move_down={
 move_right={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":68,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+fire={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
  ]
 }
 

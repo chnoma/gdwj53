@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Sprites/dev/weapon/mid.png" type="Texture" id=1]
+[ext_resource path="res://Entities/Weapons/BaseComponent/BaseComponent.gd" type="Script" id=2]
+
+[node name="mid" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="attachment_point" type="Node2D" parent="."]
+position = Vector2( 0, -4 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )

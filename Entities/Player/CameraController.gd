@@ -27,6 +27,6 @@ func _process(delta):
 	GlobalViewport.viewport_container.material.set_shader_param("cam_offset", cam_subpixel_pos )
 	
 	# Set the camera's position to the new position and round it.
-	global_position = actual_cam_pos.round()
+	global_position = actual_cam_pos.round() - GlobalViewport.offset
 	
-	GlobalViewport.mouse_pos = actual_cam_pos + GlobalViewport.viewport.get_mouse_position()*2 / window_scale - game_size  # HACK: Why two mousepos variables?
+	GlobalViewport.mouse_pos = actual_cam_pos + GlobalViewport.viewport.get_mouse_position()*2 / window_scale - game_size - GlobalViewport.offset  # HACK: Why two mousepos variables?
