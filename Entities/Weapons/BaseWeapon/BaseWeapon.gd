@@ -3,26 +3,23 @@ extends Node2D
 
 var bullet_prefab = preload("res://Entities/Weapons/BaseBullet/BaseBullet.tscn")
 
-var rear_component_path := "res://Entities/Weapons/Components/BaseComponent/Test/Rear.tscn"
-var mid_component_path := "res://Entities/Weapons/Components/BaseComponent/Test/Mid.tscn"
-var front_component_path := "res://Entities/Weapons/Components/BaseComponent/Test/Front.tscn"
-
-var rear_component: BaseComponent = null
-var mid_component: BaseComponent  = null
-var front_component: BaseComponent  = null
+var rear_component = null
+var mid_component  = null
+var front_component = null
 
 var valid = false
 var hitscan = true
-var auto = true
+var auto = false
 var fire_delay = 0.1
 var last_fire = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	rear_component = load(rear_component_path).instance()
-	mid_component = load(mid_component_path).instance()
-	front_component = load(front_component_path).instance()
+	rear_component.world_init()
+	mid_component.world_init()
+	front_component.world_init()
 	add_child(rear_component)
+	rear_component.position = Vector2(0,0) # HACK: needs to be reset
 	rear_component.add_child(mid_component)
 	mid_component.position = rear_component.attachment_point.position
 	mid_component.add_child(front_component)
@@ -57,6 +54,8 @@ func fire(_player):
 								 Color(255, 255, 230),
 								 0.02)
 		if result:
-			print("hit")
+			rear_component.bullet_collide(null, result.collider.get_parent(), result.position)
+			mid_component.bullet_collide(null, result.collider.get_parent(), result.position)
+			front_component.bullet_collide(null, result.collider.get_parent(), result.position)
 		else:
 			print("no hit")

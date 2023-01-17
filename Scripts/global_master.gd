@@ -2,6 +2,13 @@ extends Node
 
 enum ItemTypes {TRASH, REAR, MID, FRONT}
 
+var ItemSuffix = {
+	ItemTypes.FRONT: "front",
+	ItemTypes.REAR: "rear",
+	ItemTypes.MID: "mid",
+	ItemTypes.TRASH: "trash"
+}
+
 var player = null
 
 func _ready():

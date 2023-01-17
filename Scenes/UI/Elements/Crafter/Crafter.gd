@@ -26,9 +26,9 @@ func build():
 			box_front.clear_item()
 		else:
 			var weapon = base_weapon.instance()
-			weapon.rear_component_path = box_rear.item.pointer
-			weapon.mid_component_path = box_mid.item.pointer
-			weapon.front_component_path = box_front.item.pointer
+			weapon.rear_component = box_rear.item
+			weapon.mid_component = box_mid.item
+			weapon.front_component = box_front.item
 			box_rear.clear_item()
 			box_mid.clear_item()
 			box_front.clear_item()

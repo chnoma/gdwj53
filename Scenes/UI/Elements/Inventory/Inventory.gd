@@ -9,15 +9,9 @@ func _ready():
 	add_item(Item_Bluegun_Rear)
 	add_item(Item_Bluegun_Mid)
 	add_item(Item_Bluegun_Front)
-	add_item(BaseRear)
-	add_item(BaseMid)
-	add_item(BaseFront)
 	add_item(Item_Bluegun_Rear)
 	add_item(Item_Bluegun_Mid)
 	add_item(Item_Bluegun_Front)
-	add_item(BaseRear)
-	add_item(BaseMid)
-	add_item(BaseFront)
 
 func add_item(item_type):
 	find_empty_slot().set_item(item_type.new())

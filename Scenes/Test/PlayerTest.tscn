@@ -1,26 +1,11 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Entities/Enemies/BaseEnemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Entities/Player/Player_Prefab.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Tilesets/demo.tres" type="TileSet" id=3]
 
 [node name="Node2D2" type="Node2D"]
-
-[node name="Floor" type="TileMap" parent="."]
-tile_set = ExtResource( 3 )
-cell_size = Vector2( 16, 16 )
-format = 1
-tile_data = PoolIntArray( -196613, 0, 6, -196612, 0, 6, -196611, 0, 6, -196610, 0, 6, -196609, 0, 6, -262144, 0, 6, -262143, 0, 6, -262142, 0, 6, -262141, 0, 6, -262140, 0, 6, -131077, 0, 6, -131076, 0, 6, -131075, 0, 6, -131074, 0, 6, -131073, 0, 6, -196608, 0, 6, -196607, 0, 6, -196606, 0, 6, -196605, 0, 6, -196604, 0, 6, -65541, 0, 6, -65540, 0, 6, -65539, 0, 6, -65538, 0, 6, -65537, 0, 6, -131072, 0, 6, -131071, 0, 6, -131070, 0, 6, -131069, 0, 6, -131068, 0, 6, -5, 0, 6, -4, 0, 6, -3, 0, 6, -2, 0, 6, -1, 0, 6, -65536, 0, 6, -65535, 0, 6, -65534, 0, 6, -65533, 0, 6, -65532, 0, 6, 65531, 0, 6, 65532, 0, 6, 65533, 0, 6, 65534, 0, 6, 65535, 0, 6, 0, 0, 6, 1, 0, 6, 2, 0, 6, 3, 0, 6, 4, 0, 6, 131067, 0, 6, 131068, 0, 6, 131069, 0, 6, 131070, 0, 6, 131071, 0, 6, 65536, 0, 6, 65537, 0, 6, 65538, 0, 6, 65539, 0, 6, 65540, 0, 6, 196603, 0, 6, 196604, 0, 6, 196605, 0, 6, 196606, 0, 6, 196607, 0, 6, 131072, 0, 6, 131073, 0, 6, 131074, 0, 6, 131075, 0, 6, 131076, 0, 6, 262139, 0, 6, 262140, 0, 6, 262141, 0, 6, 262142, 0, 6, 262143, 0, 6, 196608, 0, 6, 196609, 0, 6, 196610, 0, 6, 196611, 0, 6, 196612, 0, 6 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 
 [node name="Enemy" parent="." instance=ExtResource( 1 )]
 position = Vector2( 93, -64 )
-
-[node name="Wall" type="TileMap" parent="."]
-scale = Vector2( 2, 2 )
-tile_set = ExtResource( 3 )
-cell_size = Vector2( 16, 16 )
-cell_custom_transform = Transform2D( 64, 0, 16, 64, 16, 0 )
-format = 1
-tile_data = PoolIntArray( -131068, 0, 8, -65532, 0, 65536, 4, 0, 65536, 65540, 0, 7 )
