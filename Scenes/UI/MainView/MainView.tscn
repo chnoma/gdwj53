@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scenes/UI/MainView/MainView.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Test/PlayerTest.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Sprites/dev/ui_overlay.png" type="Texture" id=3]
 [ext_resource path="res://Scenes/UI/Elements/Crafter/Crafter.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/UI/Elements/Crosshair/Crosshair.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Sprites/UI/Inventory Base.png" type="Texture" id=6]
 [ext_resource path="res://Scenes/UI/Elements/Inventory/Inventory.tscn" type="PackedScene" id=7]
 
 [sub_resource type="Shader" id=1]
@@ -55,14 +56,19 @@ collision_mask = 2147483648
 position = Vector2( 757, 0.5 )
 shape = SubResource( 3 )
 
-[node name="Inventory" parent="." instance=ExtResource( 7 )]
-position = Vector2( 974, -56 )
-
 [node name="Crosshair" parent="." instance=ExtResource( 5 )]
 position = Vector2( -546, -476 )
 
+[node name="InventoryBase" type="Sprite" parent="."]
+position = Vector2( 1164, 67 )
+scale = Vector2( 7.25, 7.25 )
+texture = ExtResource( 6 )
+
 [node name="Crafter" parent="." instance=ExtResource( 4 )]
-position = Vector2( 1030, -134 )
+position = Vector2( 1033, -129 )
+
+[node name="Inventory" parent="." instance=ExtResource( 7 )]
+position = Vector2( 977, -40 )
 
 [connection signal="area_entered" from="Sprite/CursorArea" to="Crosshair" method="_on_CursorArea_area_entered"]
 [connection signal="area_exited" from="Sprite/CursorArea" to="Crosshair" method="_on_CursorArea_area_exited"]

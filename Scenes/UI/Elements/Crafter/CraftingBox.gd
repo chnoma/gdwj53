@@ -12,4 +12,4 @@ export(GlobalMaster.ItemTypes) var type = GlobalMaster.ItemTypes.REAR
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$Sprite.texture = load(crafting_sprites[type])
+	pass

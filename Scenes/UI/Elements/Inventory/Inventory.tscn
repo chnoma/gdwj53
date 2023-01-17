@@ -12,43 +12,43 @@ script = ExtResource( 2 )
 position = Vector2( 64, 64 )
 
 [node name="InventorySlot2" parent="Slots" instance=ExtResource( 1 )]
-position = Vector2( 192, 64 )
+position = Vector2( 187, 64 )
 
 [node name="InventorySlot3" parent="Slots" instance=ExtResource( 1 )]
-position = Vector2( 320, 64 )
+position = Vector2( 310, 64 )
 
 [node name="InventorySlot4" parent="Slots" instance=ExtResource( 1 )]
-position = Vector2( 64, 192 )
+position = Vector2( 64, 186 )
 
 [node name="InventorySlot5" parent="Slots" instance=ExtResource( 1 )]
-position = Vector2( 192, 192 )
+position = Vector2( 187, 186 )
 
 [node name="InventorySlot6" parent="Slots" instance=ExtResource( 1 )]
-position = Vector2( 320, 192 )
+position = Vector2( 310, 186 )
 
 [node name="InventorySlot7" parent="Slots" instance=ExtResource( 1 )]
-position = Vector2( 64, 320 )
+position = Vector2( 64, 309 )
 
 [node name="InventorySlot8" parent="Slots" instance=ExtResource( 1 )]
-position = Vector2( 192, 320 )
+position = Vector2( 187, 309 )
 
 [node name="InventorySlot9" parent="Slots" instance=ExtResource( 1 )]
-position = Vector2( 320, 320 )
+position = Vector2( 310, 309 )
 
 [node name="InventorySlot10" parent="Slots" instance=ExtResource( 1 )]
-position = Vector2( 64, 448 )
+position = Vector2( 64, 433 )
 
 [node name="InventorySlot11" parent="Slots" instance=ExtResource( 1 )]
-position = Vector2( 192, 448 )
+position = Vector2( 187, 433 )
 
 [node name="InventorySlot12" parent="Slots" instance=ExtResource( 1 )]
-position = Vector2( 320, 448 )
+position = Vector2( 310, 433 )
 
 [node name="InventorySlot13" parent="Slots" instance=ExtResource( 1 )]
-position = Vector2( 64, 576 )
+position = Vector2( 64, 557 )
 
 [node name="InventorySlot14" parent="Slots" instance=ExtResource( 1 )]
-position = Vector2( 192, 576 )
+position = Vector2( 187, 557 )
 
 [node name="InventorySlot15" parent="Slots" instance=ExtResource( 1 )]
-position = Vector2( 320, 576 )
+position = Vector2( 310, 557 )

@@ -12,6 +12,10 @@ var mid_component: BaseComponent  = null
 var front_component: BaseComponent  = null
 
 var valid = false
+var hitscan = true
+var auto = true
+var fire_delay = 0.1
+var last_fire = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -27,14 +31,32 @@ func _ready():
 	mid_component.weapon_init(self)
 	front_component.weapon_init(self)
 	valid = true
-	valid = true
 
 func fire(_player):
-	var bullet = bullet_prefab.instance()
-	rear_component.fire(bullet)
-	mid_component.fire(bullet)
-	front_component.fire(bullet)
-	bullet.global_position = global_position
-	bullet.velocity = (GlobalViewport.mouse_pos - front_component.attachment_point.global_position).normalized() * 400  # TODO: allows for diagonal out of barrel - do we care?
-	bullet.global_position = front_component.attachment_point.global_position
-	GlobalViewport.viewport.add_child(bullet)
+	if !valid || OS.get_ticks_msec() - last_fire < fire_delay*1000:
+		return
+	last_fire = OS.get_ticks_msec()
+	var fire_direction = (GlobalViewport.mouse_pos - front_component.attachment_point.global_position).normalized()
+	if fire_direction.dot(global_transform.basis_xform(Vector2.UP)) < 0:
+		return  # a gun cannot shoot backwards
+	if !hitscan:
+		var bullet = bullet_prefab.instance()
+		bullet.velocity = (fire_direction * 500)
+		bullet.global_position = front_component.attachment_point.global_position
+		rear_component.fire(bullet)
+		mid_component.fire(bullet)
+		front_component.fire(bullet)
+		GlobalViewport.viewport.add_child(bullet)
+	else:
+		var space_state = get_world_2d().direct_space_state
+		var result = space_state.intersect_ray(front_component.attachment_point.global_position, 
+			front_component.attachment_point.global_position+fire_direction*500, [],
+			0x7FFFFFFF, true, true)
+		GlobalMaster.draw_tracer(front_component.attachment_point.global_position,
+								 front_component.attachment_point.global_position+fire_direction*500,
+								 Color(255, 255, 230),
+								 0.02)
+		if result:
+			print("hit")
+		else:
+			print("no hit")

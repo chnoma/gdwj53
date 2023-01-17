@@ -33,9 +33,16 @@ func _process(_delta):
 	if weapon != null:
 		weapon.look_at(GlobalViewport.mouse_pos)
 		weapon.rotation_degrees = weapon.rotation_degrees+90
-		if Input.is_action_just_pressed("fire") and !GlobalViewport.mouse_in_inventory:
-			weapon.fire(self)
-	
+
+func _physics_process(_delta):
+	if weapon != null:
+		var fire_req = false
+		if weapon.auto:
+			fire_req = Input.is_action_pressed("fire")
+		else:
+			fire_req = Input.is_action_just_pressed("fire")
+		if fire_req && !GlobalViewport.mouse_in_inventory:
+				weapon.fire(self)
 
 func clear_weapon():
 	if weapon != null:
