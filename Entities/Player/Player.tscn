@@ -1,11 +1,15 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Sprites/Player/player.png" type="Texture" id=1]
 [ext_resource path="res://Entities/Player/Player.gd" type="Script" id=2]
+[ext_resource path="res://Sprites/dev/splat.png" type="Texture" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 
 [sub_resource type="CircleShape2D" id=2]
+radius = 13.0
+
+[sub_resource type="CircleShape2D" id=3]
 radius = 13.0
 
 [node name="Player" type="KinematicBody2D"]
@@ -27,4 +31,17 @@ collision_mask = 8
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea"]
 shape = SubResource( 2 )
 
+[node name="Splat" type="Sprite" parent="."]
+visible = false
+position = Vector2( -10, 0 )
+texture = ExtResource( 3 )
+
+[node name="melee_hitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="area" type="CollisionShape2D" parent="melee_hitbox"]
+shape = SubResource( 3 )
+
 [connection signal="area_entered" from="PickupArea" to="." method="_on_PickupArea_area_entered"]
+[connection signal="area_entered" from="melee_hitbox" to="." method="_on_hitbox_area_entered"]

@@ -9,7 +9,7 @@ var noun = "item"
 var pointer = null
 
 var world_sprite = null
-var attachment_offset = Vector2(0,-16)
+var attachment_offset = Vector2(0,-7)
 var sprite_offset = null
 var auto = false
 var fire_delay_coefficient = 1.0

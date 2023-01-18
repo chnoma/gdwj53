@@ -59,6 +59,21 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Entities/Weapons/weapon_bluegun/item_bluegun_rear.gd"
 }, {
+"base": "BaseItem",
+"class": "Item_Garand_Front",
+"language": "GDScript",
+"path": "res://Entities/Weapons/weapon_garand/item_garand_front.gd"
+}, {
+"base": "BaseItem",
+"class": "Item_Garand_Mid",
+"language": "GDScript",
+"path": "res://Entities/Weapons/weapon_garand/item_garand_mid.gd"
+}, {
+"base": "BaseItem",
+"class": "Item_Generic_Rear",
+"language": "GDScript",
+"path": "res://Entities/Weapons/weapon_generic/item_generic_rear.gd"
+}, {
 "base": "Node2D",
 "class": "MouseElement",
 "language": "GDScript",
@@ -80,6 +95,9 @@ _global_script_class_icons={
 "Item_Bluegun_Front": "",
 "Item_Bluegun_Mid": "",
 "Item_Bluegun_Rear": "",
+"Item_Garand_Front": "",
+"Item_Garand_Mid": "",
+"Item_Generic_Rear": "",
 "MouseElement": "",
 "OptionsMenu": ""
 }

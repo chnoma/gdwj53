@@ -13,12 +13,16 @@ func _ready():
 	timer_update_nav.start()
 
 func _process(_delta):
+	var msec = OS.get_ticks_msec()
 	for enemy in enemies:
 		if enemy.state == GlobalAI.ai_states.AGGRO:
 			var nextpos = enemy.agent.get_next_location()
 			var direction = enemy.global_position.direction_to(nextpos)
 			enemy.move_and_slide(direction*GlobalAI.BASE_SPEED)
 			enemy.look_at(nextpos)
+			if enemy.position.distance_to(GlobalMaster.player.position) < GlobalAI.MELEE_RANGE\
+				&& msec - enemy.last_fire > GlobalAI.MELEE_COOLDOWN*1000:
+					enemy.melee()
 
 func register_enemy(enemy):
 	if enemy is BaseEnemy:
@@ -31,6 +35,11 @@ func deregister_enemy(enemy):
 
 func command_move(enemy, destination):
 	enemy.agent.set_target_location(destination)
+
+func pacify_all():
+	for enemy in enemies:
+		if enemy.state == GlobalAI.ai_states.AGGRO:
+			enemy.state = GlobalAI.ai_states.IDLE
 
 func update_nav():
 	for enemy in enemies:

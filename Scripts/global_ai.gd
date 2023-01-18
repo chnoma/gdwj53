@@ -1,17 +1,19 @@
 extends Node
 
 enum ai_states { IDLE, AGGRO }
+enum ai_types {MELEE, PISTOL, RIFLE}
 
 var DEBUG_DRAW_TARGET = false
 var DEBUG_DRAW_LOS = false
 
 # gameplay variables
-var BASE_SPEED = 200
+var BASE_SPEED = 280
 var ALERT_RANGE = 200
 var ENEMY_MIN_DISTANCE = 250
 var MAX_AGGRESSORS = 2
 
-var MELEE_RANGE = 30
+var MELEE_RANGE = 32
+var MELEE_COOLDOWN = 1
 
 var NAV_TICKRATE = 12
 var NAV_MIN_NODE_DISTANCE = 12
