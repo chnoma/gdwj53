@@ -22,7 +22,6 @@ var world_sprite_node = null
 func prep_sprite():
 	var part = GlobalMaster.ItemSuffix[type]
 	var dir = get_script().get_path().get_base_dir()+"/sprites/inventory/"+part+".png"
-	print(dir)
 	sprite = dir
 
 func _ready():

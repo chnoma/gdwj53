@@ -1,11 +1,97 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://Entities/Enemies/BaseEnemy.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Entities/Enemies/Goon_Melee.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Entities/Player/Player_Prefab.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Entities/Enemies/EnemyController.gd" type="Script" id=3]
+[ext_resource path="res://Tilesets/demo.tres" type="TileSet" id=4]
+
+[sub_resource type="NavigationPolygon" id=1]
+vertices = PoolVector2Array( 142, 102, 170, 113, 211, 154, -43, 153, 44, 122, 42, 60, 103, 60, 6, 121, -44, 53, 8, 53 )
+polygons = [ PoolIntArray( 0, 1, 2, 3, 4 ), PoolIntArray( 4, 5, 6, 0 ), PoolIntArray( 7, 4, 3 ), PoolIntArray( 7, 3, 8, 9 ) ]
+outlines = [ PoolVector2Array( -44, 53, -43, 153, 211, 154, 170, 113, 142, 102, 103, 60, 42, 60, 44, 122, 6, 121, 8, 53 ) ]
+
+[sub_resource type="NavigationPolygon" id=2]
+vertices = PoolVector2Array( 212, 1, 213, 153, 171, 110, 171, 62, 130, 1, 130, 34 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 0, 3, 5 ) ]
+outlines = [ PoolVector2Array( 171, 110, 213, 153, 212, 1, 130, 1, 130, 34, 171, 62 ) ]
+
+[sub_resource type="NavigationPolygon" id=3]
+vertices = PoolVector2Array( 123, -102, 121, -108, 145, -108, 146, -86, 123, -41, 184, -40, 214, -87, 217, 0, 184, -1 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 0, 3, 5 ), PoolIntArray( 5, 3, 6 ), PoolIntArray( 5, 6, 7, 8 ) ]
+outlines = [ PoolVector2Array( 123, -102, 123, -41, 184, -40, 184, -1, 217, 0, 214, -87, 146, -86, 145, -108, 121, -108 ) ]
+
+[sub_resource type="NavigationPolygon" id=4]
+vertices = PoolVector2Array( 214, -217, 215, -122, 160, -122, -37, -215, -39, -110, 145, -108 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 3, 2, 5 ) ]
+outlines = [ PoolVector2Array( -37, -215, -39, -110, 145, -108, 160, -122, 215, -122, 214, -217 ) ]
+
+[sub_resource type="NavigationPolygon" id=5]
+vertices = PoolVector2Array( -78, -213, -41, -213, -44, -111, -84.3477, -110.007, 79, -60, 82, 15, -76, 17, -70, -61, -80, 187, -377, 174, -365, -220, -85, -75, -82, -236 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 5, 6, 7 ), PoolIntArray( 6, 8, 9, 10 ), PoolIntArray( 7, 6, 10, 11 ), PoolIntArray( 3, 11, 10 ), PoolIntArray( 3, 10, 12, 0 ) ]
+outlines = [ PoolVector2Array( -365, -220, -377, 174, -80, 187, -76, 17, 82, 15, 79, -60, -70, -61, -85, -75, -84.3477, -110.007, -44, -111, -41, -213, -78, -213, -82, -236 ) ]
+
+[sub_resource type="NavigationPolygon" id=6]
+vertices = PoolVector2Array( -534, 136, -380, 136, -381, 174, -687, 176, -685, -2, -542, 2 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 0, 3, 4, 5 ) ]
+outlines = [ PoolVector2Array( -381, 174, -687, 176, -685, -2, -542, 2, -534, 136, -380, 136 ) ]
+
+[sub_resource type="NavigationPolygon" id=7]
+vertices = PoolVector2Array( -526, 43, -526, 20, -485, 21, -506, 43, -484, 134, -506, 134 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 3, 2, 4, 5 ) ]
+outlines = [ PoolVector2Array( -526, 20, -526, 43, -506, 43, -506, 134, -484, 134, -485, 21 ) ]
+
+[sub_resource type="NavigationPolygon" id=8]
+vertices = PoolVector2Array( -370, -204, -367, -178, -404, -180, -426, -204, -427, -125, -405, -86, -457, -85, -453, -125, -523, -6, -543, 2, -683, -3, -687, -222, -532, -218, -452, -213, -456, -7 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 3, 2, 5 ), PoolIntArray( 4, 5, 6, 7 ), PoolIntArray( 8, 9, 10, 11, 12, 13, 7, 6 ), PoolIntArray( 8, 6, 14 ) ]
+outlines = [ PoolVector2Array( -532, -218, -687, -222, -683, -3, -543, 2, -523, -6, -456, -7, -457, -85, -405, -86, -404, -180, -367, -178, -370, -204, -426, -204, -427, -125, -453, -125, -452, -213 ) ]
 
 [node name="Node2D2" type="Node2D"]
 
+[node name="EnemyController" type="Node" parent="."]
+script = ExtResource( 3 )
+
 [node name="Player" parent="." instance=ExtResource( 2 )]
 
-[node name="Enemy" parent="." instance=ExtResource( 1 )]
-position = Vector2( 93, -64 )
+[node name="Navigation2D" type="Navigation2D" parent="."]
+edge_connection_margin = 10.0
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Navigation2D"]
+navpoly = SubResource( 1 )
+
+[node name="NavigationPolygonInstance2" type="NavigationPolygonInstance" parent="Navigation2D"]
+navpoly = SubResource( 2 )
+
+[node name="NavigationPolygonInstance3" type="NavigationPolygonInstance" parent="Navigation2D"]
+navpoly = SubResource( 3 )
+
+[node name="NavigationPolygonInstance4" type="NavigationPolygonInstance" parent="Navigation2D"]
+navpoly = SubResource( 4 )
+
+[node name="NavigationPolygonInstance5" type="NavigationPolygonInstance" parent="Navigation2D"]
+navpoly = SubResource( 5 )
+
+[node name="Enemy" parent="Navigation2D" instance=ExtResource( 1 )]
+position = Vector2( -595, 34 )
+
+[node name="Enemy2" parent="Navigation2D" instance=ExtResource( 1 )]
+position = Vector2( -592, -145 )
+
+[node name="Enemy4" parent="Navigation2D" instance=ExtResource( 1 )]
+position = Vector2( -594, -54 )
+
+[node name="NavigationPolygonInstance6" type="NavigationPolygonInstance" parent="Navigation2D"]
+navpoly = SubResource( 6 )
+
+[node name="NavigationPolygonInstance7" type="NavigationPolygonInstance" parent="Navigation2D"]
+navpoly = SubResource( 7 )
+
+[node name="NavigationPolygonInstance8" type="NavigationPolygonInstance" parent="Navigation2D"]
+navpoly = SubResource( 8 )
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 4 )
+cell_size = Vector2( 16, 16 )
+collision_layer = 32
+collision_mask = 0
+format = 1
+tile_data = PoolIntArray( -917508, 0, 6, -917507, 0, 6, -917506, 0, 6, -917505, 0, 6, -983040, 0, 6, -983039, 0, 6, -983038, 0, 6, -983037, 0, 6, -983036, 0, 6, -983035, 0, 6, -983034, 0, 6, -983033, 0, 6, -983032, 0, 6, -983031, 0, 6, -983030, 0, 6, -983029, 0, 6, -983028, 0, 6, -983027, 0, 6, -983026, 0, 6, -851996, 0, 6, -851995, 0, 6, -851994, 0, 6, -851993, 0, 6, -851992, 0, 6, -917490, 0, 6, -786460, 0, 6, -851954, 0, 6, -720924, 0, 6, -786418, 0, 6, -655388, 0, 6, -655385, 0, 6, -655384, 0, 6, -720882, 0, 6, -589852, 0, 6, -589849, 0, 6, -655346, 0, 6, -524316, 0, 6, -524313, 0, 6, -589810, 0, 6, -458777, 0, 6, -524274, 0, 6, -393241, 0, 6, -458742, 0, 6, -458741, 0, 6, -458740, 0, 6, -458739, 0, 6, -458738, 0, 6, -327705, 0, 6, -327684, 0, 6, -327683, 0, 6, -327682, 0, 6, -327681, 0, 6, -393216, 0, 6, -393215, 0, 6, -393214, 0, 6, -393213, 0, 6, -393212, 0, 6, -393211, 0, 6, -393210, 0, 6, -393202, 0, 6, -262172, 0, 6, -262171, 0, 6, -262170, 0, 6, -262169, 0, 6, -327674, 0, 6, -327666, 0, 6, -196636, 0, 6, -196635, 0, 6, -196634, 0, 6, -196633, 0, 6, -262138, 0, 6, -262130, 0, 6, -131100, 0, 6, -131099, 0, 6, -131098, 0, 6, -131097, 0, 6, -196602, 0, 6, -196594, 0, 6, -65564, 0, 6, -65563, 0, 6, -65562, 0, 6, -65561, 0, 6, -131066, 0, 6, -131065, 0, 6, -131064, 0, 6, -131063, 0, 6, -131062, 0, 6, -131058, 0, 6, -28, 0, 6, -27, 0, 6, -26, 0, 6, -25, 0, 6, -65530, 0, 6, -65522, 0, 6, 65503, 0, 6, 65504, 0, 6, 65505, 0, 6, 65506, 0, 6, 65507, 0, 6, 65508, 0, 6, 65509, 0, 6, 65510, 0, 6, 65511, 0, 6, 6, 0, 6, 14, 0, 6, 131042, 0, 6, 131043, 0, 6, 131044, 0, 6, 131045, 0, 6, 131046, 0, 6, 131047, 0, 6, 65542, 0, 6, 65550, 0, 6, 196578, 0, 6, 196579, 0, 6, 196580, 0, 6, 196581, 0, 6, 196582, 0, 6, 196583, 0, 6, 196604, 0, 6, 196605, 0, 6, 196606, 0, 6, 196607, 0, 6, 131072, 0, 6, 131073, 0, 6, 131074, 0, 6, 131075, 0, 6, 131076, 0, 6, 131077, 0, 6, 131078, 0, 6, 131086, 0, 6, 262111, 0, 6, 262114, 0, 6, 262115, 0, 6, 262116, 0, 6, 262117, 0, 6, 262118, 0, 6, 262119, 0, 6, 262140, 0, 6, 196609, 0, 6, 196615, 0, 6, 196622, 0, 6, 327647, 0, 6, 327650, 0, 6, 327651, 0, 6, 327652, 0, 6, 327653, 0, 6, 327654, 0, 6, 327655, 0, 6, 327676, 0, 6, 262145, 0, 6, 262152, 0, 6, 262158, 0, 6, 393183, 0, 6, 393186, 0, 6, 393187, 0, 6, 393188, 0, 6, 393189, 0, 6, 393190, 0, 6, 393191, 0, 6, 393212, 0, 6, 327681, 0, 6, 327689, 0, 6, 327694, 0, 6, 458719, 0, 6, 458722, 0, 6, 458723, 0, 6, 458724, 0, 6, 458725, 0, 6, 458726, 0, 6, 458727, 0, 6, 458748, 0, 6, 393217, 0, 6, 393230, 0, 6, 524258, 0, 6, 524259, 0, 6, 524260, 0, 6, 524261, 0, 6, 524262, 0, 6, 524263, 0, 6, 524284, 0, 6, 458766, 0, 6, 589820, 0, 6, 524302, 0, 6, 655356, 0, 6, 589838, 0, 6, 720892, 0, 6, 720893, 0, 6, 720894, 0, 6, 720895, 0, 6, 655360, 0, 6, 655361, 0, 6, 655362, 0, 6, 655363, 0, 6, 655364, 0, 6, 655365, 0, 6, 655366, 0, 6, 655367, 0, 6, 655368, 0, 6, 655369, 0, 6, 655370, 0, 6, 655371, 0, 6, 655372, 0, 6, 655373, 0, 6, 655374, 0, 6 )
