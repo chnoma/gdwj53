@@ -16,9 +16,9 @@ func _ready():
 func _process(delta):
 	window_scale = (OS.window_size / game_size).x
 	var mouse_pos = GlobalViewport.viewport.get_mouse_position() / window_scale - (game_size/2) + player.global_position
-	var cam_pos = lerp(player.global_position, mouse_pos, 0.8)
+	var cam_pos = lerp(player.global_position, mouse_pos, 0.9)
 	
-	actual_cam_pos = lerp(actual_cam_pos, cam_pos, delta*5)
+	actual_cam_pos = lerp(actual_cam_pos, cam_pos+player.velocity, delta*10)
 	
 	# Calculate the "subpixel" position of the new camera position
 	var cam_subpixel_pos = actual_cam_pos.round() - actual_cam_pos

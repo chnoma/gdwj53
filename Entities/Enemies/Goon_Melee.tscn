@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Sprites/Player/player.png" type="Texture" id=1]
 [ext_resource path="res://Entities/Enemies/BaseEnemy.gd" type="Script" id=2]
 [ext_resource path="res://Sounds/weapons/melee/395352__ihitokage__woosh-8.ogg" type="AudioStream" id=3]
+[ext_resource path="res://Sounds/weapons/light/gun_pistol_shot_01.wav" type="AudioStream" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 5, 14 )
@@ -48,7 +49,7 @@ polygon = PoolVector2Array( 0, 0, 192, 64, 192, -64 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="line_of_sight"]
 shape = SubResource( 3 )
 
-[node name="fire_sfx" type="AudioStreamPlayer" parent="."]
+[node name="melee_sfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
 
 [node name="melee_hurtbox" type="Area2D" parent="."]
@@ -60,6 +61,9 @@ monitoring = false
 position = Vector2( 15, 0 )
 shape = SubResource( 4 )
 disabled = true
+
+[node name="fire_sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
 
 [connection signal="area_entered" from="line_of_sight" to="." method="_on_line_of_sight_area_entered"]
 [connection signal="area_exited" from="line_of_sight" to="." method="_on_line_of_sight_area_exited"]

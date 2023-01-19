@@ -64,6 +64,7 @@ func clear_weapon():
 		weapon.queue_free()
 		weapon = null
 
+
 func equip_weapon(weapon_in: BaseWeapon):
 	clear_weapon()
 	$Weapon_Attachment.add_child(weapon_in)

@@ -6,10 +6,11 @@ func _init():
 	adjective = "Old"
 	noun = "Garand"
 	item_name = "Barrel"
-	auto = true
+	auto = false
 	prep_sprite()
 
 func bullet_collide(_bullet, other, position):
-	GlobalEffects.spark(7, position, 50)
 	if other is BaseEnemy:
-		other.damage(3)
+		other.damage(30)
+	else:
+		GlobalEffects.spark(7, position, 50)
