@@ -1,7 +1,14 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=11 format=2]
 
+[ext_resource path="res://Sounds/UI/inventory_move/gun_pistol_general_handling_10.wav" type="AudioStream" id=1]
 [ext_resource path="res://Sprites/dev/weapon/component-rear.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/UI/Elements/Inventory/InventorySlot.gd" type="Script" id=3]
+[ext_resource path="res://Sounds/UI/inventory_move/gun_pistol_general_handling_08.wav" type="AudioStream" id=6]
+[ext_resource path="res://Sounds/UI/inventory_move/gun_pistol_general_handling_09.wav" type="AudioStream" id=8]
+[ext_resource path="res://Sounds/UI/inventory_move/gun_pistol_general_handling_05.wav" type="AudioStream" id=9]
+[ext_resource path="res://Sounds/UI/inventory_move/gun_pistol_general_handling_07.wav" type="AudioStream" id=10]
+[ext_resource path="res://Sounds/UI/inventory_move/gun_pistol_general_handling_01.wav" type="AudioStream" id=12]
+[ext_resource path="res://addons/randomAudioStreamPlayer/random_audio_stream_player.gd" type="Script" id=13]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 59, 59 )
@@ -22,6 +29,14 @@ collision_mask = 2147483648
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 1 )
+
+[node name="set_sound" type="AudioStreamPlayer" parent="."]
+volume_db = -6.0
+bus = "SFX"
+script = ExtResource( 13 )
+samples = [ ExtResource( 12 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 6 ), ExtResource( 8 ), ExtResource( 1 ) ]
+random_volume_range = 0
+random_pitch_range = 0
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_Area2D_area_exited"]

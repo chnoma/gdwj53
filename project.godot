@@ -29,7 +29,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scenes/UI/Elements/Crafter/CraftingBox.gd"
 }, {
-"base": "Node2D",
+"base": "KinematicBody2D",
 "class": "DroppedItem",
 "language": "GDScript",
 "path": "res://Entities/Items/DroppedItem.gd"
@@ -38,6 +38,16 @@ _global_script_classes=[ {
 "class": "EnemyController",
 "language": "GDScript",
 "path": "res://Entities/Enemies/EnemyController.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Env_BloodParticle",
+"language": "GDScript",
+"path": "res://Entities/environment/particle_blood.gd"
+}, {
+"base": "Sprite",
+"class": "Env_BloodSurface",
+"language": "GDScript",
+"path": "res://Entities/environment/env_blood.gd"
 }, {
 "base": "MouseElement",
 "class": "InventorySlot",
@@ -79,10 +89,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scenes/UI/Elements/mouse_element.gd"
 }, {
-"base": "MarginContainer",
+"base": "Reference",
 "class": "OptionsMenu",
 "language": "GDScript",
-"path": "res://Scripts/UI/OptionsMenu.gd"
+"path": "res://UI/OptionsMenu.gd"
 } ]
 _global_script_class_icons={
 "BaseEnemy": "",
@@ -91,6 +101,8 @@ _global_script_class_icons={
 "CraftingBox": "",
 "DroppedItem": "",
 "EnemyController": "",
+"Env_BloodParticle": "",
+"Env_BloodSurface": "",
 "InventorySlot": "",
 "Item_Bluegun_Front": "",
 "Item_Bluegun_Mid": "",
@@ -110,7 +122,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
-GlobalSettings="*res://Scripts/global_settings.gd"
+GlobalSettings="res://Scripts/global_settings.gd"
 GlobalAudio="*res://Scripts/global_audio.gd"
 GlobalViewport="*res://Scripts/global_viewport.gd"
 GlobalPhysics="*res://Scripts/global_physics.gd"
@@ -118,6 +130,8 @@ GlobalMaster="*res://Scripts/global_master.gd"
 GlobalEffects="*res://Scripts/global_effects.gd"
 GlobalAI="*res://Scripts/global_ai.gd"
 GlobalUtils="*res://Scripts/global_utils.gd"
+GlobalLoot="*res://Scripts/global_loot.gd"
+GlobalHud="*res://Scripts/global_hud.gd"
 
 [display]
 
@@ -128,7 +142,7 @@ window/stretch/aspect="keep"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/AsepriteWizard/plugin.cfg", "res://addons/Todo_Manager/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/AsepriteWizard/plugin.cfg", "res://addons/Todo_Manager/plugin.cfg", "res://addons/randomAudioStreamPlayer/plugin.cfg" )
 
 [gui]
 
@@ -177,6 +191,7 @@ fire={
 2d_physics/layer_5="bullets"
 2d_physics/layer_6="world"
 2d_physics/layer_7="enemy hitboxes"
+2d_physics/layer_8="bloodable surfaces"
 2d_physics/layer_32="mouse cursor"
 
 [physics]

@@ -9,8 +9,9 @@ func _init():
 	auto = false
 	prep_sprite()
 
-func bullet_collide(_bullet, other, position):
+func bullet_collide(bullet, other, position):
 	if other is BaseEnemy:
 		other.damage(30)
+		GlobalEffects.blood_controller.spray_blood(position, GlobalMaster.player.look_direction)
 	else:
 		GlobalEffects.spark(7, position, 50)

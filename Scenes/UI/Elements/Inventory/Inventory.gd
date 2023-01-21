@@ -6,9 +6,6 @@ onready var slots = $Slots.get_children()
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	GlobalViewport.inventory = self
-	add_item(Item_Bluegun_Rear)
-	add_item(Item_Bluegun_Mid)
-	add_item(Item_Bluegun_Front)
 	add_item(Item_Generic_Rear)
 	add_item(Item_Garand_Mid)
 	add_item(Item_Garand_Front)

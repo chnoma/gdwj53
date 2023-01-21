@@ -1,6 +1,8 @@
 class_name InventorySlot
 extends MouseElement
 
+signal item_set()
+signal item_removed()
 
 var item_prev_pos := Vector2(0.0, 0.0)
 var dragging = false
@@ -12,15 +14,18 @@ func _ready():
 	pass
 
 func set_item(item_in: BaseItem):
+	$set_sound.play()
 	item = item_in
 	$ItemSprite.visible = true
 	$ItemSprite.texture = load(item.sprite)
+	emit_signal("item_set")
 
 func clear_item():
 	if item == null:
 		return
 	$ItemSprite.visible = false
 	item = null
+	emit_signal("item_removed")
 
 func is_empty() -> bool:
 	return item == null

@@ -4,7 +4,7 @@ var velocity: Vector2 = Vector2(0,0)
 var speed = 250
 var weapon = null
 var alive = true
-
+var look_direction = null
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	GlobalMaster.player = self
@@ -28,6 +28,8 @@ func _process(_delta):
 	
 	# normalize so diagonal movement speed is same as any other
 	desired_direction = desired_direction.normalized()
+	
+	look_direction = global_position.direction_to(GlobalViewport.mouse_pos)
 	
 	look_at(GlobalViewport.mouse_pos)
 # warning-ignore:return_value_discarded

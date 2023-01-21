@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Entities/Weapons/BaseWeapon/BaseWeapon.gd" type="Script" id=1]
-[ext_resource path="res://Sounds/weapons/heavy/gun_machinegun_auto_heavy_shot_01.wav" type="AudioStream" id=2]
+[ext_resource path="res://Sounds/weapons/light/gun_pistol_shot_01.wav" type="AudioStream" id=2]
 
 [node name="BaseWeapon" type="Node2D"]
 script = ExtResource( 1 )

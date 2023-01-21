@@ -1,12 +1,19 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Scenes/UI/MainView/MainView.gd" type="Script" id=1]
-[ext_resource path="res://Scenes/Test/PlayerTest.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/MainLevel.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Sprites/dev/ui_overlay.png" type="Texture" id=3]
 [ext_resource path="res://Scenes/UI/Elements/Crafter/Crafter.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/UI/Elements/Crosshair/Crosshair.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Sprites/UI/Inventory Base.png" type="Texture" id=6]
 [ext_resource path="res://Scenes/UI/Elements/Inventory/Inventory.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/UI/MainView/mplabel.gd" type="Script" id=8]
+[ext_resource path="res://Sprites/UI/numbers.tres" type="SpriteFrames" id=9]
+[ext_resource path="res://Sprites/UI/Health Head.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/UI/shutter_animation_close.tres" type="SpriteFrames" id=11]
+[ext_resource path="res://Sprites/UI/shutter_active.tres" type="SpriteFrames" id=12]
+[ext_resource path="res://Scenes/UI/MainView/Shutter_Active.gd" type="Script" id=13]
+[ext_resource path="res://Scenes/UI/MainView/Shutter_Animation.gd" type="Script" id=14]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -40,8 +47,9 @@ rect_scale = Vector2( 4, 4 )
 size = Vector2( 482, 272 )
 handle_input_locally = false
 render_target_update_mode = 3
+audio_listener_enable_2d = true
 
-[node name="Node2D" parent="ViewportContainer/Viewport" instance=ExtResource( 2 )]
+[node name="Node2D2" parent="ViewportContainer/Viewport" instance=ExtResource( 2 )]
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 414, 64 )
@@ -58,17 +66,82 @@ shape = SubResource( 3 )
 
 [node name="Crosshair" parent="." instance=ExtResource( 5 )]
 position = Vector2( -546, -476 )
+z_index = 902
+z_as_relative = false
 
 [node name="InventoryBase" type="Sprite" parent="."]
 position = Vector2( 1164, 67 )
 scale = Vector2( 7.25, 7.25 )
 texture = ExtResource( 6 )
 
+[node name="Shutter_Animation" type="AnimatedSprite" parent="InventoryBase"]
+visible = false
+z_index = 901
+z_as_relative = false
+frames = ExtResource( 11 )
+frame = 3
+playing = true
+script = ExtResource( 14 )
+
+[node name="Shutter_Active" type="AnimatedSprite" parent="InventoryBase"]
+visible = false
+z_index = 900
+z_as_relative = false
+frames = ExtResource( 12 )
+playing = true
+script = ExtResource( 13 )
+
 [node name="Crafter" parent="." instance=ExtResource( 4 )]
 position = Vector2( 1033, -129 )
 
 [node name="Inventory" parent="." instance=ExtResource( 7 )]
 position = Vector2( 977, -40 )
+
+[node name="ui_ammo" type="Node2D" parent="."]
+
+[node name="current" type="Node2D" parent="ui_ammo"]
+position = Vector2( 0.758, -0.243 )
+
+[node name="Sprite" type="AnimatedSprite" parent="ui_ammo/current"]
+position = Vector2( 1011, -375 )
+scale = Vector2( 7.25, 7.25 )
+frames = ExtResource( 9 )
+frame = 10
+
+[node name="Sprite2" type="AnimatedSprite" parent="ui_ammo/current"]
+position = Vector2( 1040, -375 )
+scale = Vector2( 7.25, 7.25 )
+frames = ExtResource( 9 )
+frame = 10
+
+[node name="current2" type="Node2D" parent="ui_ammo"]
+position = Vector2( 87.754, -0.278 )
+
+[node name="Sprite" type="AnimatedSprite" parent="ui_ammo/current2"]
+position = Vector2( 1011, -375 )
+scale = Vector2( 7.25, 7.25 )
+frames = ExtResource( 9 )
+frame = 10
+
+[node name="Sprite2" type="AnimatedSprite" parent="ui_ammo/current2"]
+position = Vector2( 1040, -375 )
+scale = Vector2( 7.25, 7.25 )
+frames = ExtResource( 9 )
+frame = 10
+
+[node name="HealthHead" type="Sprite" parent="."]
+position = Vector2( 1325, -361 )
+scale = Vector2( 7.25, 7.25 )
+texture = ExtResource( 10 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+visible = false
+margin_left = -541.0
+margin_top = 582.0
+margin_right = -257.0
+margin_bottom = 630.0
+text = "mouse pos:"
+script = ExtResource( 8 )
 
 [connection signal="area_entered" from="Sprite/CursorArea" to="Crosshair" method="_on_CursorArea_area_entered"]
 [connection signal="area_exited" from="Sprite/CursorArea" to="Crosshair" method="_on_CursorArea_area_exited"]

@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
+[ext_resource path="res://Sounds/UI/crafting.wav" type="AudioStream" id=1]
 [ext_resource path="res://Scenes/UI/Elements/Crafter/CraftingBox.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/UI/Elements/Crafter/BldButton.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/UI/Elements/Crafter/Crafter.gd" type="Script" id=4]
+[ext_resource path="res://Sounds/UI/ding.wav" type="AudioStream" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 191.5, 13 )
@@ -38,6 +40,14 @@ collision_mask = 2147483648
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BldButton/Area2D"]
 position = Vector2( 127.5, -83 )
 shape = SubResource( 1 )
+
+[node name="craft_sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+bus = "SFX"
+
+[node name="ding" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+volume_db = -4.0
 
 [connection signal="area_entered" from="BldButton/Area2D" to="BldButton" method="_on_Area2D_area_entered"]
 [connection signal="area_exited" from="BldButton/Area2D" to="BldButton" method="_on_Area2D_area_exited"]

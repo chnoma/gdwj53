@@ -9,18 +9,26 @@ export var speed := 1.0
 
 onready var agent: NavigationAgent2D = $NavigationAgent2D
 
-var state = GlobalAI.ai_states.IDLE
+export(GlobalAI.ai_states) var state = GlobalAI.ai_states.IDLE
 export(GlobalAI.ai_types) var type = GlobalAI.ai_types.MELEE
 
 var player_in_range = false
 var player_seen_time := 0.0
 var last_fire = 0
 
+export var start_node_patrol := @"";
+var patrol_node = null
+
+var blind = true
+
 func _ready():
 	GlobalAI.enemy_controller.register_enemy(self)
+	if start_node_patrol != @"":
+		patrol_node = get_node(start_node_patrol) as Node2D
+		GlobalAI.enemy_controller.command_move(self, patrol_node.position)
 
-func _process(delta):
-	if GlobalMaster.player.alive && player_in_range && state != GlobalAI.ai_states.AGGRO:  # TODO: consider moving to slower loop
+func _physics_process(delta):
+	if GlobalMaster.player.alive && player_in_range && state != GlobalAI.ai_states.AGGRO && !blind:
 		if can_see_player():
 			# player has been seen, alert
 			GlobalAI.enemy_controller.alert_enemies(position, GlobalAI.ALERT_RANGE)
@@ -78,6 +86,7 @@ func can_see_player():
 
 func die():
 	GlobalAI.enemy_controller.deregister_enemy(self)
+	GlobalLoot.drop_loot(self.global_position)
 	queue_free()
 
 func damage(amount):
