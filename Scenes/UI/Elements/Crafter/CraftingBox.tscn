@@ -34,5 +34,10 @@ samples = [ ExtResource( 7 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 3
 random_volume_range = 0
 random_pitch_range = 0
 
+[node name="Line2D" type="Line2D" parent="."]
+visible = false
+width = 4.0
+default_color = Color( 1, 1, 1, 1 )
+
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_Area2D_area_exited"]

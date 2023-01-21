@@ -9,6 +9,12 @@ func _ready():
 	add_item(Item_Generic_Rear)
 	add_item(Item_Garand_Mid)
 	add_item(Item_Garand_Front)
+	add_item(Item_Smg_Rear)
+	add_item(Item_Smg_Mid)
+	add_item(Item_Smg_Front)
+	add_item(Item_Shotgun_Rear)
+	add_item(Item_Shotgun_Mid)
+	add_item(Item_Shotgun_Front)
 
 func add_item(item_type):
 	find_empty_slot().set_item(item_type.new())

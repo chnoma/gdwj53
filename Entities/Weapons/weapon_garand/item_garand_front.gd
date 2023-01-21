@@ -3,8 +3,8 @@ extends BaseItem
 
 func _init():
 	type = GlobalMaster.ItemTypes.FRONT
-	adjective = "Old"
-	noun = "Garand"
-	item_name = "Barrel"
-	attachment_offset = Vector2(0,-3)
+	view_dist_coefficient = 1.2
+	rate_of_fire_coefficient = 0.8
+	spread_coefficient = 0.6
+	movement_coefficient = 0.95
 	prep_sprite()

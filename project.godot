@@ -55,21 +55,6 @@ _global_script_classes=[ {
 "path": "res://Scenes/UI/Elements/Inventory/InventorySlot.gd"
 }, {
 "base": "BaseItem",
-"class": "Item_Bluegun_Front",
-"language": "GDScript",
-"path": "res://Entities/Weapons/weapon_bluegun/item_bluegun_front.gd"
-}, {
-"base": "BaseItem",
-"class": "Item_Bluegun_Mid",
-"language": "GDScript",
-"path": "res://Entities/Weapons/weapon_bluegun/item_bluegun_mid.gd"
-}, {
-"base": "BaseItem",
-"class": "Item_Bluegun_Rear",
-"language": "GDScript",
-"path": "res://Entities/Weapons/weapon_bluegun/item_bluegun_rear.gd"
-}, {
-"base": "BaseItem",
 "class": "Item_Garand_Front",
 "language": "GDScript",
 "path": "res://Entities/Weapons/weapon_garand/item_garand_front.gd"
@@ -83,6 +68,36 @@ _global_script_classes=[ {
 "class": "Item_Generic_Rear",
 "language": "GDScript",
 "path": "res://Entities/Weapons/weapon_generic/item_generic_rear.gd"
+}, {
+"base": "BaseItem",
+"class": "Item_Shotgun_Front",
+"language": "GDScript",
+"path": "res://Entities/Weapons/weapon_shotgun/item_shotgun_front.gd"
+}, {
+"base": "BaseItem",
+"class": "Item_Shotgun_Mid",
+"language": "GDScript",
+"path": "res://Entities/Weapons/weapon_shotgun/item_shotgun_mid.gd"
+}, {
+"base": "BaseItem",
+"class": "Item_Shotgun_Rear",
+"language": "GDScript",
+"path": "res://Entities/Weapons/weapon_shotgun/item_shotgun_rear.gd"
+}, {
+"base": "BaseItem",
+"class": "Item_Smg_Front",
+"language": "GDScript",
+"path": "res://Entities/Weapons/weapon_smg/item_smg_front.gd"
+}, {
+"base": "BaseItem",
+"class": "Item_Smg_Mid",
+"language": "GDScript",
+"path": "res://Entities/Weapons/weapon_smg/item_smg_mid.gd"
+}, {
+"base": "BaseItem",
+"class": "Item_Smg_Rear",
+"language": "GDScript",
+"path": "res://Entities/Weapons/weapon_smg/item_smg_rear.gd"
 }, {
 "base": "Node2D",
 "class": "MouseElement",
@@ -104,12 +119,15 @@ _global_script_class_icons={
 "Env_BloodParticle": "",
 "Env_BloodSurface": "",
 "InventorySlot": "",
-"Item_Bluegun_Front": "",
-"Item_Bluegun_Mid": "",
-"Item_Bluegun_Rear": "",
 "Item_Garand_Front": "",
 "Item_Garand_Mid": "",
 "Item_Generic_Rear": "",
+"Item_Shotgun_Front": "",
+"Item_Shotgun_Mid": "",
+"Item_Shotgun_Rear": "",
+"Item_Smg_Front": "",
+"Item_Smg_Mid": "",
+"Item_Smg_Rear": "",
 "MouseElement": "",
 "OptionsMenu": ""
 }
@@ -179,6 +197,11 @@ move_right={
 fire={
 "deadzone": 0.5,
 "events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
+rmb={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":2,"pressed":false,"doubleclick":false,"script":null)
  ]
 }
 

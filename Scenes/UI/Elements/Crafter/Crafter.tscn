@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Sounds/UI/crafting.wav" type="AudioStream" id=1]
 [ext_resource path="res://Scenes/UI/Elements/Crafter/CraftingBox.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/UI/Elements/Crafter/BldButton.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/UI/Elements/Crafter/Crafter.gd" type="Script" id=4]
 [ext_resource path="res://Sounds/UI/ding.wav" type="AudioStream" id=5]
+[ext_resource path="res://Sounds/UI/craft_loop.wav" type="AudioStream" id=6]
+[ext_resource path="res://Sounds/UI/buzzer.wav" type="AudioStream" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 191.5, 13 )
@@ -48,6 +50,17 @@ bus = "SFX"
 [node name="ding" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
 volume_db = -4.0
+bus = "SFX"
+
+[node name="sfx_loop" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+volume_db = -2.862
+bus = "SFX"
+
+[node name="sfx_invalid" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+volume_db = -4.0
+bus = "SFX"
 
 [connection signal="area_entered" from="BldButton/Area2D" to="BldButton" method="_on_Area2D_area_entered"]
 [connection signal="area_exited" from="BldButton/Area2D" to="BldButton" method="_on_Area2D_area_exited"]

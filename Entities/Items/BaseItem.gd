@@ -4,20 +4,26 @@ extends Node2D
 var type = GlobalMaster.ItemTypes.TRASH
 var sprite = "res://Sprites/dev/item.png"
 var item_name := "Invalid Item"
-var adjective = "invalid"
-var noun = "item"
 var pointer = null
 
-var world_sprite = null
-var attachment_offset = Vector2(0,-7)
-var sprite_offset = null
 var auto = false
-var fire_delay_coefficient = 1.0
-var spread_coefficient = 1.0
 var hitscan = true
+var size = 1
 
-var attachment_point = null
-var world_sprite_node = null
+var base_ammo := 30
+var base_damage: float = 10
+var base_durability := 10
+var base_reload := 1.5
+var base_rate_of_fire = 1.0
+var base_spread = 0.1
+
+var rate_of_fire_coefficient = 1.0
+var spread_coefficient = 1.0
+var ammo_coefficient = 1.0
+var movement_coefficient = 1.0
+var view_dist_coefficient = 1.0
+var damage_coefficient = 1.0
+var durability_coefficient = 1.0
 
 func prep_sprite():
 	var part = GlobalMaster.ItemSuffix[type]
@@ -28,29 +34,16 @@ func _ready():
 	pass
 
 func world_init():
-	if world_sprite == null:
-		var part = GlobalMaster.ItemSuffix[type]
-		var dir = get_script().get_path().get_base_dir()+"/sprites/world/"+part+".png"
-		print(dir)
-		world_sprite = dir
-	if sprite_offset == null:
-		sprite_offset = Vector2(0, attachment_offset.y/2)
-	attachment_point = Node2D.new()
-	add_child(attachment_point)
-	attachment_point.position = attachment_offset
-	world_sprite_node = Sprite.new()
-	add_child(world_sprite_node)
-	world_sprite_node.position = sprite_offset
-	world_sprite_node.texture = load(world_sprite)
+	pass
 
 func weapon_init(_weapon):
 	pass
 
-func fire(_bullet):
+func fire(_bullet, _position, _fire_direction, _weapon, _recursive):
 	pass
 
 func bullet_process(_bullet):
 	pass
 
-func bullet_collide(_bullet, _other, _position):
+func bullet_collide(_bullet, _other, _position, _weapon, _recursive):
 	pass

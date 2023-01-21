@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Scenes/UI/MainView/MainView.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/MainLevel.tscn" type="PackedScene" id=2]
@@ -14,6 +14,9 @@
 [ext_resource path="res://Sprites/UI/shutter_active.tres" type="SpriteFrames" id=12]
 [ext_resource path="res://Scenes/UI/MainView/Shutter_Active.gd" type="Script" id=13]
 [ext_resource path="res://Scenes/UI/MainView/Shutter_Animation.gd" type="Script" id=14]
+[ext_resource path="res://Scenes/UI/MainView/ui_ammo.gd" type="Script" id=15]
+[ext_resource path="res://Sprites/UI/weapon_condition.tres" type="SpriteFrames" id=16]
+[ext_resource path="res://Scenes/UI/MainView/Weapon_Condition.gd" type="Script" id=17]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -74,6 +77,12 @@ position = Vector2( 1164, 67 )
 scale = Vector2( 7.25, 7.25 )
 texture = ExtResource( 6 )
 
+[node name="Weapon_Condition" type="AnimatedSprite" parent="InventoryBase"]
+z_index = 901
+z_as_relative = false
+frames = ExtResource( 16 )
+script = ExtResource( 17 )
+
 [node name="Shutter_Animation" type="AnimatedSprite" parent="InventoryBase"]
 visible = false
 z_index = 901
@@ -98,32 +107,33 @@ position = Vector2( 1033, -129 )
 position = Vector2( 977, -40 )
 
 [node name="ui_ammo" type="Node2D" parent="."]
+script = ExtResource( 15 )
 
 [node name="current" type="Node2D" parent="ui_ammo"]
 position = Vector2( 0.758, -0.243 )
 
-[node name="Sprite" type="AnimatedSprite" parent="ui_ammo/current"]
+[node name="tens" type="AnimatedSprite" parent="ui_ammo/current"]
 position = Vector2( 1011, -375 )
 scale = Vector2( 7.25, 7.25 )
 frames = ExtResource( 9 )
 frame = 10
 
-[node name="Sprite2" type="AnimatedSprite" parent="ui_ammo/current"]
+[node name="ones" type="AnimatedSprite" parent="ui_ammo/current"]
 position = Vector2( 1040, -375 )
 scale = Vector2( 7.25, 7.25 )
 frames = ExtResource( 9 )
 frame = 10
 
-[node name="current2" type="Node2D" parent="ui_ammo"]
+[node name="available" type="Node2D" parent="ui_ammo"]
 position = Vector2( 87.754, -0.278 )
 
-[node name="Sprite" type="AnimatedSprite" parent="ui_ammo/current2"]
+[node name="tens" type="AnimatedSprite" parent="ui_ammo/available"]
 position = Vector2( 1011, -375 )
 scale = Vector2( 7.25, 7.25 )
 frames = ExtResource( 9 )
 frame = 10
 
-[node name="Sprite2" type="AnimatedSprite" parent="ui_ammo/current2"]
+[node name="ones" type="AnimatedSprite" parent="ui_ammo/available"]
 position = Vector2( 1040, -375 )
 scale = Vector2( 7.25, 7.25 )
 frames = ExtResource( 9 )

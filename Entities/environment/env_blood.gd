@@ -12,6 +12,7 @@ onready var rect = Rect2(global_position+GlobalEffects.BLOOD_SURFACE_SIZE/2, -Gl
 func _ready():
 	z_index = 1
 	z_as_relative = false
+# warning-ignore:narrowing_conversion
 	surface_image.create(GlobalEffects.BLOOD_SURFACE_SIZE.x, abs(GlobalEffects.BLOOD_SURFACE_SIZE.y), false, Image.FORMAT_RGBAH)
 	surface_image.fill(Color(0, 0, 0, 0))
 	surface_texture.create_from_image(surface_image)

@@ -24,7 +24,7 @@ func _process(_delta):
 			enemy.move_and_slide(direction*speed)
 			enemy.look_at(nextpos)
 		if enemy.state == GlobalAI.ai_states.AGGRO:
-			if enemy.position.distance_to(GlobalMaster.player.position) < GlobalAI.MELEE_RANGE\
+			if enemy.position.distance_to(GlobalMaster.player.global_position) < GlobalAI.MELEE_RANGE\
 				&& msec - enemy.last_fire > GlobalAI.MELEE_COOLDOWN*1000:
 					enemy.melee()
 

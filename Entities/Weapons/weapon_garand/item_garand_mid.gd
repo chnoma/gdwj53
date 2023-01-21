@@ -3,15 +3,16 @@ extends BaseItem
 
 func _init():
 	type = GlobalMaster.ItemTypes.MID
-	adjective = "Old"
-	noun = "Garand"
-	item_name = "Barrel"
-	auto = false
+	base_ammo = 5
+	base_damage = 13
+	base_durability = 15
+	base_reload = 1.5
+	base_rate_of_fire = 1.5
+	hitscan = true
 	prep_sprite()
 
-func bullet_collide(bullet, other, position):
+func bullet_collide(bullet, other, position, weapon, _recursive):
 	if other is BaseEnemy:
-		other.damage(30)
-		GlobalEffects.blood_controller.spray_blood(position, GlobalMaster.player.look_direction)
+		other.damage(weapon.damage, position, weapon.last_direction)
 	else:
 		GlobalEffects.spark(7, position, 50)

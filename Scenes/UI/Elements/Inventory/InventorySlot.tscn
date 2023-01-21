@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Sounds/UI/inventory_move/gun_pistol_general_handling_10.wav" type="AudioStream" id=1]
-[ext_resource path="res://Sprites/dev/weapon/component-rear.png" type="Texture" id=2]
+[ext_resource path="res://Entities/Weapons/weapon_shotgun/sprites/inventory/rear.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/UI/Elements/Inventory/InventorySlot.gd" type="Script" id=3]
 [ext_resource path="res://Sounds/UI/inventory_move/gun_pistol_general_handling_08.wav" type="AudioStream" id=6]
 [ext_resource path="res://Sounds/UI/inventory_move/gun_pistol_general_handling_09.wav" type="AudioStream" id=8]
@@ -19,7 +19,7 @@ script = ExtResource( 3 )
 [node name="ItemSprite" type="Sprite" parent="."]
 visible = false
 scale = Vector2( 4, 4 )
-z_index = 1
+z_index = 900
 z_as_relative = false
 texture = ExtResource( 2 )
 
@@ -37,6 +37,14 @@ script = ExtResource( 13 )
 samples = [ ExtResource( 12 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 6 ), ExtResource( 8 ), ExtResource( 1 ) ]
 random_volume_range = 0
 random_pitch_range = 0
+
+[node name="Line2D" type="Line2D" parent="."]
+visible = false
+z_index = 900
+z_as_relative = false
+points = PoolVector2Array( -77, -108, 74, -101 )
+width = 4.0
+default_color = Color( 1, 1, 1, 1 )
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_Area2D_area_exited"]
