@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Sprites/Player/Body.png" type="Texture" id=1]
 [ext_resource path="res://Entities/Player/Player.gd" type="Script" id=2]
@@ -9,6 +9,13 @@
 [ext_resource path="res://Sprites/Weapons/Rifle.png" type="Texture" id=7]
 [ext_resource path="res://Sprites/Weapons/Heavy.png" type="Texture" id=8]
 [ext_resource path="res://Entities/Player/weapon_arm.gd" type="Script" id=9]
+[ext_resource path="res://Sounds/weapons/meele swing.wav" type="AudioStream" id=10]
+[ext_resource path="res://addons/randomAudioStreamPlayer/random_audio_stream_player.gd" type="Script" id=11]
+[ext_resource path="res://Sounds/weapons/melee/2.wav" type="AudioStream" id=12]
+[ext_resource path="res://Sounds/weapons/melee/3.wav" type="AudioStream" id=13]
+[ext_resource path="res://Sounds/weapons/melee/4.wav" type="AudioStream" id=14]
+[ext_resource path="res://Sounds/weapons/melee/5.wav" type="AudioStream" id=15]
+[ext_resource path="res://Sounds/weapons/melee/1.wav" type="AudioStream" id=16]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -19,7 +26,7 @@ radius = 13.0
 radius = 9.0
 
 [node name="Player" type="KinematicBody2D"]
-z_index = 4
+z_index = 2
 z_as_relative = false
 collision_mask = 33
 script = ExtResource( 2 )
@@ -117,6 +124,15 @@ position = Vector2( 2, 10 )
 position = Vector2( 1, -10 )
 rotation = 1.5708
 texture = ExtResource( 4 )
+
+[node name="melee_sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+volume_db = -3.696
+bus = "SFX"
+script = ExtResource( 11 )
+samples = [ ExtResource( 16 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ) ]
+random_volume_range = 0
+random_pitch_range = 0
 
 [connection signal="area_entered" from="PickupArea" to="." method="_on_PickupArea_area_entered"]
 [connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]

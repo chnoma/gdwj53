@@ -11,6 +11,7 @@ func _init():
 	base_durability = 14
 	base_spread = 0.12
 	hitscan = true
+	identifier = "ishm"
 	prep_sprite()
 
 func bullet_collide(bullet, other, position, weapon, _recursive):

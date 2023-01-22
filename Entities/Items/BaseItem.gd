@@ -25,6 +25,8 @@ var view_dist_coefficient = 1.0
 var damage_coefficient = 1.0
 var durability_coefficient = 1.0
 
+var identifier
+
 func prep_sprite():
 	var part = GlobalMaster.ItemSuffix[type]
 	var dir = get_script().get_path().get_base_dir()+"/sprites/inventory/"+part+".png"

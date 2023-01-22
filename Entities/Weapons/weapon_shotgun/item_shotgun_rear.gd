@@ -6,4 +6,5 @@ func _init():
 	size = 2
 	spread_coefficient = 0.9
 	damage_coefficient = 1.3
+	identifier = "ishr"
 	prep_sprite()

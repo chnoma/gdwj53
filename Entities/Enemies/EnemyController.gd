@@ -13,8 +13,12 @@ func _ready():
 	timer_update_nav.start()
 
 func _process(_delta):
+	if GlobalMaster.freeze:
+		return
 	var msec = OS.get_ticks_msec()
 	for enemy in enemies:
+		if !enemy:
+			return
 		if enemy.state != GlobalAI.ai_states.IDLE && !enemy.agent.is_target_reached():
 			var speed = GlobalAI.BASE_SPEED
 			if enemy.state != GlobalAI.ai_states.AGGRO:
@@ -24,7 +28,7 @@ func _process(_delta):
 			enemy.move_and_slide(direction*speed)
 			enemy.look_at(nextpos)
 		if enemy.state == GlobalAI.ai_states.AGGRO:
-			if enemy.position.distance_to(GlobalMaster.player.global_position) < GlobalAI.MELEE_RANGE\
+			if enemy.global_position.distance_to(GlobalMaster.player.global_position) < GlobalAI.MELEE_RANGE\
 				&& msec - enemy.last_fire > GlobalAI.MELEE_COOLDOWN*1000:
 					enemy.melee()
 
@@ -35,6 +39,7 @@ func register_enemy(enemy):
 		push_error("registered non-enemy to AI")
 
 func deregister_enemy(enemy):
+	enemies.find(enemy)
 	enemies.remove(enemies.find(enemy))
 
 func command_move(enemy, destination):
@@ -58,9 +63,16 @@ func update_nav():
 			elif enemy.agent.is_target_reached():
 				command_move(enemy, enemy.patrol_node.global_position)
 				enemy.patrol_node = enemy.patrol_node.next_node
-				
+
+func get_enemies_in_radius(position, radius):
+	var return_value = []
+	for enemy in enemies:
+		if enemy.global_position.distance_to(position) < radius && enemy.alive:
+			return_value.append(enemy)
+	return return_value
+
 
 func alert_enemies(position, radius):
-	for enemy in enemies:
-		if enemy.state != GlobalAI.ai_states.AGGRO && enemy.global_position.distance_to(position) < radius:
+	for enemy in get_enemies_in_radius(position, radius):
+		if enemy.state != GlobalAI.ai_states.AGGRO:
 			enemy.state = GlobalAI.ai_states.AGGRO

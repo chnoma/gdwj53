@@ -4,8 +4,6 @@ extends Sprite
 
 var surface_image := Image.new()
 var surface_texture := ImageTexture.new()
-var blood_image := Image.new()
-var blood_texture := ImageTexture.new()
 var update = false
 onready var rect = Rect2(global_position+GlobalEffects.BLOOD_SURFACE_SIZE/2, -GlobalEffects.BLOOD_SURFACE_SIZE)
 
@@ -16,10 +14,6 @@ func _ready():
 	surface_image.create(GlobalEffects.BLOOD_SURFACE_SIZE.x, abs(GlobalEffects.BLOOD_SURFACE_SIZE.y), false, Image.FORMAT_RGBAH)
 	surface_image.fill(Color(0, 0, 0, 0))
 	surface_texture.create_from_image(surface_image)
-	
-	blood_image.load("res://Sprites/particles/blood.png")
-	blood_image.convert(Image.FORMAT_RGBAH)
-	blood_texture.create_from_image(blood_image)
 	
 	texture = surface_texture
 
@@ -35,7 +29,8 @@ func convert_to_local(point: Vector2):
 
 func draw_blood(draw_pos: Vector2):
 	surface_image.lock()
-	surface_image.blit_rect(blood_image, Rect2(Vector2(0,0), Vector2(1,1)), convert_to_local(draw_pos))
+	var pos = convert_to_local(draw_pos)
+	surface_image.set_pixel(pos.x, pos.y, Color(255,0,0)) # ???? anything but pure red turns white
 	surface_image.unlock()
 	update = true
 

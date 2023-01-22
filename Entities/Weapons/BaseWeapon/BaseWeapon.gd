@@ -19,8 +19,8 @@ var current_ammo
 
 var reload_time = 1.0
 
-var max_durability: int
-var current_durability
+var max_durability: float
+var current_durability: float
 
 var damage
 var spread: float
@@ -49,15 +49,19 @@ func _ready():
 	spread = mid_component.base_spread*front_component.spread_coefficient*rear_component.spread_coefficient
 	current_durability = max_durability
 	current_ammo = base_ammo
+	refresh_hud()
+	valid = true
+
+func refresh_hud():
 	GlobalHud.ui_ammo.set_available(base_ammo)
 	GlobalHud.ui_ammo.set_current(current_ammo)
-	GlobalHud.weapon_condition.frame = 9
-	valid = true
+	GlobalHud.weapon_condition.frame = max(int((current_durability/max_durability)*10-1), 1)
 
 func fire(position, fire_direction, recursive=false):
 	if !recursive  && (!valid || OS.get_ticks_msec() - last_fire < fire_delay*1000 || current_ammo <= 0):
 		return
 	$sfx.play()
+	GlobalAI.enemy_controller.alert_enemies(global_position, 256)
 	last_fire = OS.get_ticks_msec()
 	var spread_result = GlobalUtils.normalized_spread(fire_direction, spread)
 	last_direction = spread_result
@@ -100,7 +104,7 @@ func fire(position, fire_direction, recursive=false):
 		current_ammo -= 1
 		if current_ammo <= 0:
 			reload_start()
-		GlobalHud.ui_ammo.set_current(current_ammo)
+	refresh_hud()
 
 func weapon_break():
 	GlobalAudio.play_sound("res://Sounds/weapons/Gun break.wav", -6.0)
@@ -123,5 +127,4 @@ func reload_start():
 func reload_finish():
 	$reload_end.play()
 	current_ammo = base_ammo
-	GlobalHud.ui_ammo.set_current(current_ammo)
-	
+	refresh_hud()

@@ -3,7 +3,7 @@ extends Node
 var BLOOD_SURFACE_SIZE = Vector2(128, -128)
 var BLOOD_MAX_LIFE = 2
 var BLOOD_SPRAY_MAX_PARTICLES = 40
-var BLOOD_SPRAY_SPREAD = 0.4
+var BLOOD_SPRAY_SPREAD = 0.7
 var BLOOD_SPRAY_SPEED = 250
 
 var blood_controller = null

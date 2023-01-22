@@ -13,8 +13,9 @@ var item = null
 func _ready():
 	pass
 
-func set_item(item_in: BaseItem):
-	$set_sound.play()
+func set_item(item_in: BaseItem, silent=false):
+	if !silent:
+		$set_sound.play()
 	item = item_in
 	$ItemSprite.visible = true
 	$ItemSprite.texture = load(item.sprite)

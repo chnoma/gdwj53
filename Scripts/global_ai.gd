@@ -1,10 +1,10 @@
 extends Node
 
 enum ai_states { IDLE, AGGRO, WANDER, PATROL }
-enum ai_types {MELEE, PISTOL, RIFLE}
+enum ai_types {MELEE, PISTOL, RIFLE, BOSS, SHIELD}
 
-var DEBUG_DRAW_TARGET = true
-var DEBUG_DRAW_LOS = true
+var DEBUG_DRAW_TARGET = false
+var DEBUG_DRAW_LOS = false
 
 # gameplay variables
 var BASE_SPEED = 280

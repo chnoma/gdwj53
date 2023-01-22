@@ -1,0 +1,124 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://fonts/Dynastium-Kjvy.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Scenes/credits_crawler.gd" type="Script" id=2]
+[ext_resource path="res://Music/theme.ogg" type="AudioStream" id=3]
+[ext_resource path="res://Scenes/credits.gd" type="Script" id=4]
+[ext_resource path="res://Entities/Player/fader.gd" type="Script" id=5]
+[ext_resource path="res://Sprites/UI/ftw.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/splash/image.png" type="Texture" id=7]
+
+[sub_resource type="DynamicFont" id=6]
+size = 48
+font_data = ExtResource( 1 )
+
+[sub_resource type="Shader" id=4]
+code = "shader_type canvas_item;
+
+uniform float alpha;
+
+void fragment() {
+    vec4 texture_color = texture(TEXTURE, UV);
+    COLOR = vec4(texture_color.r, texture_color.g, texture_color.b, alpha);
+}"
+
+[sub_resource type="ShaderMaterial" id=5]
+shader = SubResource( 4 )
+shader_param/alpha = null
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="credits" type="Node2D" parent="."]
+position = Vector2( 0, 1096 )
+script = ExtResource( 2 )
+
+[node name="Node2D" type="Node2D" parent="credits"]
+position = Vector2( 960, 888 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="credits"]
+margin_right = 1920.0
+margin_bottom = 2264.0
+custom_fonts/normal_font = SubResource( 6 )
+bbcode_enabled = true
+bbcode_text = "[center]
+
+
+
+
+PROGRAMMING - Adrian Arnett
+
+
+ART - RaisinSun
+
+
+MUSIC - Kodi & Loxo3000
+
+
+DESIGN - NotAPenguinNamedSteve
+
+
+
+
+
+
+
+
+
+
+
+THANK YOU FOR PLAYING
+
+GDWJ#53
+
+SHOUTOUT TO THE BRONK
+RHYME WITH HONK
+[/center]"
+text = "
+
+
+
+
+PROGRAMMING - Adrian Arnett
+
+
+ART - RaisinSun
+
+
+MUSIC - Kodi & Loxo3000
+
+
+DESIGN - NotAPenguinNamedSteve
+
+
+
+
+
+
+
+
+
+
+
+THANK YOU FOR PLAYING
+
+GDWJ#53
+
+SHOUTOUT TO THE BRONK
+RHYME WITH HONK
+"
+
+[node name="Image" type="Sprite" parent="credits"]
+position = Vector2( 952, -56 )
+texture = ExtResource( 7 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+autoplay = true
+bus = "Music"
+
+[node name="Fader" type="Sprite" parent="."]
+material = SubResource( 5 )
+position = Vector2( 960, 540 )
+texture = ExtResource( 6 )
+script = ExtResource( 5 )

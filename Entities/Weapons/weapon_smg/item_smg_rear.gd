@@ -8,4 +8,5 @@ func _init():
 	rate_of_fire_coefficient = 1.25
 	damage_coefficient = 0.9
 	movement_coefficient = 1.15
+	identifier = "isr"
 	prep_sprite()

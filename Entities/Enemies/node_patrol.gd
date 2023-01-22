@@ -9,7 +9,7 @@ export var node_path := @""; onready var next_node := get_node(node_path) as Nod
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	$Sprite.visible = false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

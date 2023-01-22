@@ -6,6 +6,7 @@ func _init():
 	size = 1
 	damage_coefficient = 0.07
 	spread_coefficient = 1.7
+	identifier = "ishf"
 	prep_sprite()
 
 func fire(_bullet, position, fire_direction, weapon, recursive):

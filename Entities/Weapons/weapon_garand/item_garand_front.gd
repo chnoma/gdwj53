@@ -7,4 +7,5 @@ func _init():
 	rate_of_fire_coefficient = 0.8
 	spread_coefficient = 0.6
 	movement_coefficient = 0.95
+	identifier = "igf"
 	prep_sprite()

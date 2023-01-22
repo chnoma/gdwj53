@@ -18,12 +18,23 @@ func register_blood_particle(particle):
 
 func deregister_blood_particle(particle):
 	blood_particles.remove(blood_particles.find(particle))
-
+	
+func deregister_blood_surface(surface):
+	blood_surfaces.remove(blood_surfaces.find(surface))
+	
 func register_blood_surface(surface):
 	if surface is Env_BloodSurface:
 		blood_surfaces.append(surface)
 	else:
 		push_error("registered non-surface to blood_surfaces")
+
+func clear():
+	for particle in blood_particles:
+		deregister_blood_particle(particle)
+		particle.queue_free()
+	for surface in blood_surfaces:
+		deregister_blood_surface(surface)
+		surface.queue_free()
 
 func surface_at_point(point: Vector2):
 	for surface in blood_surfaces:
@@ -37,7 +48,7 @@ func spray_blood(position, direction):
 							*GlobalMaster.rng.randf_range(32, GlobalEffects.BLOOD_SPRAY_SPEED)
 		particle.global_position = position + Vector2(GlobalMaster.rng.randf_range(0, 4),
 													  GlobalMaster.rng.randf_range(0, 4))
-		GlobalViewport.viewport.add_child(particle)
+		GlobalMaster.level_object.add_child(particle)
 		
 
 func _physics_process(_delta):
@@ -52,6 +63,6 @@ func _physics_process(_delta):
 			surface = Env_BloodSurface.new()
 			surface.global_position = Vector2(particle.global_position.x-fmod(particle.global_position.x, GlobalEffects.BLOOD_SURFACE_SIZE.x)+GlobalEffects.BLOOD_SURFACE_SIZE.x/2,
 											  particle.global_position.y-fmod(particle.global_position.y, GlobalEffects.BLOOD_SURFACE_SIZE.y)+GlobalEffects.BLOOD_SURFACE_SIZE.y/2)
-			GlobalViewport.viewport.add_child(surface)
+			GlobalMaster.level_object.add_child(surface)
 			register_blood_surface(surface)
 		surface.draw_blood(particle.global_position)

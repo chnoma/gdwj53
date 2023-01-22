@@ -12,6 +12,7 @@ func _init():
 	base_spread = 0.2
 	hitscan = true
 	auto = true
+	identifier = "ism"
 	prep_sprite()
 
 func bullet_collide(bullet, other, position, weapon, _recursive):

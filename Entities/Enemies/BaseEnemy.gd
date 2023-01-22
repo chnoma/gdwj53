@@ -1,13 +1,14 @@
 class_name BaseEnemy
 extends KinematicBody2D
 
+signal dead()
 
 var bullet_scene = preload("res://Entities/Weapons/BaseBullet/EnemyBullet.tscn")
 
 export var health := 10
 export var speed := 1.0
 
-onready var agent: NavigationAgent2D = $NavigationAgent2D
+var agent
 
 export(GlobalAI.ai_states) var state = GlobalAI.ai_states.IDLE
 export(GlobalAI.ai_types) var type = GlobalAI.ai_types.MELEE
@@ -24,13 +25,17 @@ var alive = true
 var blind = false
 
 func _ready():
-	GlobalAI.enemy_controller.register_enemy(self)
-	if start_node_patrol != @"":
-		patrol_node = get_node(start_node_patrol) as Node2D
-		GlobalAI.enemy_controller.command_move(self, patrol_node.position)
+	if type != GlobalAI.ai_types.BOSS && type != GlobalAI.ai_types.SHIELD:
+		agent = $NavigationAgent2D
+		GlobalAI.enemy_controller.register_enemy(self)
+		if start_node_patrol != @"":
+			patrol_node = get_node(start_node_patrol) as Node2D
+			GlobalAI.enemy_controller.command_move(self, patrol_node.position)
 	$Sprite.material = $Sprite.material.duplicate()  # so each enemy flashes individually
 
 func _physics_process(delta):
+	if GlobalMaster.freeze || type == GlobalAI.ai_types.BOSS ||  type == GlobalAI.ai_types.SHIELD:
+		return
 	if GlobalMaster.player.alive && player_in_range && state != GlobalAI.ai_states.AGGRO && !blind:
 		if can_see_player():
 			# player has been seen, alert
@@ -100,15 +105,21 @@ func set_whitening(a):
 	$Sprite.material.set_shader_param("whitening", a )
 
 func die():
+	if type == GlobalAI.ai_types.BOSS:
+		return
 	alive = false
-	GlobalAI.enemy_controller.deregister_enemy(self)
+	if type != GlobalAI.ai_types.SHIELD: 
+		GlobalAI.enemy_controller.deregister_enemy(self)
+	GlobalLoot.drop_loot(self.global_position)
 	GlobalLoot.drop_loot(self.global_position)
 	queue_free()
+	emit_signal("dead")
 
 func damage(amount, damage_position, direction):
 	if !alive:
 		return
-	GlobalEffects.blood_controller.spray_blood(damage_position, direction)
+	if type != GlobalAI.ai_types.BOSS && type != GlobalAI.ai_types.SHIELD:
+		GlobalEffects.blood_controller.spray_blood(damage_position, direction)
 	health -= amount
 	if health <= 0:
 		die()
